@@ -2,10 +2,8 @@ import random
 from instapy import InstaPy
 from instapy import smart_run
 
-# get a session!
-
-insta_username = "xxx"
-insta_password = "xxx"
+insta_username = "test"
+insta_password = "test"
 
 session = InstaPy(username=insta_username, password=insta_password, headless_browser=True)
 
@@ -92,6 +90,6 @@ with smart_run(session):
 
     """ Joining Engagement Pods...
     """
-    session.join_pods(topic='frenchbulldog', engagement_mode='no_comments')
+    session.join_pods(topic='general', engagement_mode='no_comments')
 
     session.already_liked()

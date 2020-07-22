@@ -1,53 +1,20 @@
 from instapy import InstaPy
 from instapy import smart_run
 
-# login credentials
-insta_username = "xxx"
-insta_password = "xxx"
+insta_username = "test"
+insta_password = "test"
 
-# get an InstaPy session!
-# set headless_browser=True to run InstaPy in the background
-# session = InstaPy(username=insta_username,
-#                   password=insta_password)
-#
-# with smart_run(session):
-#     """ Activity flow """
-#     # general settings
-#     session.set_relationship_bounds(enabled=True,
-#                                     delimit_by_numbers=True,
-#                                     max_followers=5000,
-#                                     min_followers=1)
-#     session.set_quota_supervisor(enabled=True, sleep_after=["likes"],
-#                                  peak_likes_daily=40, peak_likes_hourly=20)
-#
-#     # activity
-#     session.like_by_locations(["107677462599905/minsk-belarus/"], amount=40)
-#     session.end()
-
-
-import random
-from instapy import InstaPy
-from instapy import smart_run
 
 # get a session!
 session = InstaPy(username=insta_username, password=insta_password, headless_browser=True)
 
 # let's go! :>
 with smart_run(session):
-    # hashtags = ['bulldog', 'frenchbulldog', 'frenchie',
-    #             'dogs',
-    #             'bulldogs', 'frenchbulldogs', 'frenchbulldogpuppy',
-    #             'frenchbulldogsofinstagram', 'bulldogdays',
-    #             'bulldogfrances', 'bulldogoftheday', 'beautifuldestinations',
-    #             'bulldogofinsta',
-    #             'bulldogover', 'bulldogge', 'bulldogofinstagram', 'bulldogslife',
-    #             'bulldog_planet',
-    #             'bulldog_ig_community', 'bulldoglifestyle', 'frenchbulldogx', 'frenchbull',
-    #             'frenchbulldoglove']
-    # random.shuffle(hashtags)
-    # my_hashtags = hashtags[:10]
+    other_locale = ['1023936095/', "790750200/minsk/", 'locations/1023936095/',  "229302938/gorky-park-minsk/"]
+    locations = []
 
     # general settings
+    session.set_skip_users(skip_business=True, skip_no_profile_pic=True, skip_private=True)
     session.set_quota_supervisor(enabled=True,
                                  sleep_after=["likes", "follows"],
                                  sleepyhead=True, stochastic_flow=True,
@@ -65,34 +32,27 @@ with smart_run(session):
     session.set_dont_like(['sad', 'rain', 'depression'])
     session.set_do_follow(enabled=True, percentage=80, times=1)
     session.set_do_comment(enabled=True, percentage=80)
+
     # session.set_comments([
-    #                          u'What an amazing shot! :heart_eyes: What do '
-    #                          u'you think of my recent shot?',
-    #                          u'What an amazing shot! :heart_eyes: I think '
-    #                          u'you might also like mine. :wink:',
-    #                          u'Wonderful!! :heart_eyes: Would be awesome if '
-    #                          u'you would checkout my photos as well!',
-    #                          u'Wonderful!! :heart_eyes: I would be honored '
-    #                          u'if you would checkout my images and tell me '
-    #                          u'what you think. :wink:',
-    #                          u'This is awesome!! :heart_eyes: Any feedback '
-    #                          u'for my photos? :wink:',
-    #                          u'This is awesome!! :heart_eyes:  maybe you '
-    #                          u'like my photos, too? :wink:',
-    #                          u'I really like the way you captured this. I '
-    #                          u'bet you like my photos, too :wink:',
-    #                          u'I really like the way you captured this. If '
-    #                          u'you have time, check out my photos, too. I '
-    #                          u'bet you will like them. :wink:',
-    #                          u'Great capture!! :smiley: Any feedback for my '
-    #                          u'recent shot? :wink:',
-    #                          u'Great capture!! :smiley: :thumbsup: What do '
-    #                          u'you think of my recent photo?'],
+    #                          u'Очень крутое фото! :heart_eyes: Взгляни на '
+    #                          u'мои работы',
+    #                          u'Это фото огонь :heart_eyes:'
+    #                          u'если есть минутка - оцени мои) :wink:',
+    #                          u'Очень крутое фото :heart_eyes:  определенно лайк! ',
+    #                          u'Классный пост, :heart_eyes: '
+    #                          u'оцените мой:wink:',
+    #                          u'Отличный снимок :heart_eyes: мне нравится! :wink:',
+    #                          u'Удачное фото :heart_eyes: '
+    #                          u'Как считаете, мои такие же? :wink:',
+    #                          u'Мне нравятся Ваши фото, а Вам мои?) :wink:',
+    #                          u'Делайте больше таких постов, это круто! :wink:',
+    #                          u'Ради этого стоило заходить на Вашу страничку. :smiley:'
+    #                          u'Как Вам моя?) :wink:'],
     #                      media='Photo')
     session.set_comments([
-                             u'Очень крутое фото! :heart_eyes: Взгляни на '
-                             u'мои работы',
-                             u'Это фото огонь :heart_eyes:'
+                             u'Это фото огонь! :heart_eyes: Если есть минутка '
+                             u'оцени мои',
+                             u'Очень крутое фото, определенно лайка :heart_eyes:'
                              u'если есть минутка - оцени мои) :wink:',
                              u'Очень крутое фото :heart_eyes:  определенно лайк! ',
                              u'Классный пост, :heart_eyes: '
@@ -120,7 +80,7 @@ with smart_run(session):
     session.set_user_interact(amount=10, randomize=True, percentage=80)
 
     # activity
-    session.like_by_locations(["790750200/minsk/"], amount=90)
+    session.like_by_locations(locations, amount=90)
 
     session.unfollow_users(amount=500, instapy_followed_enabled=True, instapy_followed_param="nonfollowers",
                            style="FIFO",
