@@ -25,6 +25,7 @@ with smart_run(session):
     my_hashtags = hashtags[:10]
 
     # general settings
+    session.set_action_delays(enabled=True, like=40)
     session.set_skip_users(skip_business=True, skip_no_profile_pic=True, skip_private=True)
     session.set_quota_supervisor(enabled=True,
                                  sleep_after=["likes"],
@@ -97,7 +98,7 @@ with smart_run(session):
                                     max_followers=10000,
                                     max_following=2000,
                                     min_followers=50,
-                                    min_following=50)
+                                    min_following=15)
 
     session.set_user_interact(amount=10, randomize=True, percentage=80)
 
